@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9348ce7b37641784590b91013ecfaf07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTarget: {fileID: 0}
+  followTarget: {fileID: 577322470}
   moveSpeed: 10
 --- !u!20 &519420031
 Camera:
@@ -223,6 +223,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSortAxis: {x: 0, y: 1, z: -1}
+--- !u!4 &577322470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5948766751808174424, guid: e95e8bbd79ea75e4bac753620c8b287e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5948766752380224702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1431778075
 PrefabInstance:
   m_ObjectHideFlags: 0
