@@ -18,21 +18,26 @@ public class AxisDistanceSortCameraHelper : MonoBehaviour
     float cameraSortAxisZ = -1.0f;
     */
 
-    void Start()
+    private void Initialize()
     {
         var camera = GetComponent<Camera>();
         camera.transparencySortMode = TransparencySortMode.CustomAxis;
-//        camera.transparencySortAxis = new Vector3(cameraSortAxisX, cameraSortAxisY, cameraSortAxisZ);
+        //        camera.transparencySortAxis = new Vector3(cameraSortAxisX, cameraSortAxisY, cameraSortAxisZ);
         camera.transparencySortAxis = cameraSortAxis;
 
 #if UNITY_EDITOR
         foreach (SceneView sv in SceneView.sceneViews)
         {
             sv.camera.transparencySortMode = TransparencySortMode.CustomAxis;
-//            sv.camera.transparencySortAxis = new Vector3(cameraSortAxisX, cameraSortAxisY, cameraSortAxisZ);
+            //            sv.camera.transparencySortAxis = new Vector3(cameraSortAxisX, cameraSortAxisY, cameraSortAxisZ);
             sv.camera.transparencySortAxis = cameraSortAxis;
         }
-#endif      
+#endif
+    }
+
+    void Start()
+    {
+        Initialize();
     }
 
     public Vector3 SortAxis { get { return cameraSortAxis; } set { cameraSortAxis = value; } }
