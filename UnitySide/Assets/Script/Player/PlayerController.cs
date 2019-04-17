@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rbody = null;
     private Animator animator = null;
+    static private int hashSpeed = Animator.StringToHash("Speed");
     [SerializeField] float movementSpeed = 1.0f;
 
     private void Initialize()
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
         inputVector = Vector2.ClampMagnitude(inputVector, 1.0f);
-        
+        animator.SetFloat(hashSpeed, inputVector.magnitude);
         PlayerDirection(inputVector.x);
         Vector2 movement = inputVector * movementSpeed;
         Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
@@ -41,24 +42,19 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerDirection(float direction)
     {
-        //何も入力されていなければ返す
-        if(direction == Vector2.zero)
+        //左右でなければ返す
+        if(direction == 0.0f)
         {
             return;
         }
 
         //入力された方向に応じて向きを変える
-        if(direction.x > 0.0f)
+        if(direction > 0.0f)
         {
             transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        }else if(direction.x < 0.0f)
+        }else if(direction < 0.0f)
         {
             transform.localEulerAngles = new Vector3(0.0f, -180.0f, 0.0f);
         }
-    }
-
-    private void PlayerAnimation()
-    {
-        animator.SetFloat("Speed", inputVector.magnitude);
     }
 }
