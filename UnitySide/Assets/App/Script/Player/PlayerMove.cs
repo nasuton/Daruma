@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public partial class Player : MonoBehaviour
 {
     private Rigidbody2D rbody = null;
-    private SpriteRenderer renderer = null;
+    private SpriteRenderer spriteRenderer = null;
     private Animator animator = null;
     [SerializeField] float movementSpeed = 1.0f;
 
     private void Initialize()
     {
         rbody = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
@@ -40,25 +40,4 @@ public class PlayerController : MonoBehaviour
         rbody.MovePosition(newPos);
     }
 
-    private void PlayerDirection(Vector2 direction)
-    {
-        //何も入力されていなければ返す
-        if (direction == Vector2.zero)
-        {
-            animator.SetBool("isRunning", false);
-            return;
-        }
-
-        ////入力された方向に応じて向きを変える
-        if (direction.x > 0.0f)
-        {
-            renderer.flipX = false;
-        }
-        else if (direction.x < 0.0f)
-        {
-            renderer.flipX = true;
-        }
-
-        animator.SetBool("isRunning", true);
-    }
 }
